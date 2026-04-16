@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>For You 💖</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  text-align: center;
+  background: linear-gradient(to right, #ffdde1, #ee9ca7);
+  color: white;
+}
+
+.screen { display: none; padding: 30px; }
+.active { display: block; }
+
+.card {
+  display: inline-block;
+  padding: 20px;
+  margin: 15px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+img {
+  width: 200px;
+  border-radius: 15px;
+  margin: 10px;
+}
+
+.bigcake {
+  width: 90%;
+  max-width: 500px;
+}
+
+button {
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  background: #ff4d6d;
+  color: white;
+}
+</style>
+
+</head>
+
+<body>
+
+<audio id="music" loop>
+  <source src="song.mpeg">
+</audio>
+
+<!-- PASSWORD -->
+<div id="screen1" class="screen active">
+  <h2>🔐 Enter Password 💕</h2>
+  <img src="cute.jpg">
+
+  <br><br>
+
+  <input type="password" id="pass">
+  <br>
+  <button onclick="checkPass()">Enter</button>
+
+  <p id="error"></p>
+
+  <!-- WRONG GIF VIDEO -->
+  <video id="wrongVid" width="250" style="display:none;" autoplay loop muted>
+    <source src="wrong.mp4">
+  </video>
+</div>
+
+<!-- CAKE -->
+<div id="screen2" class="screen">
+  <h1>🎂 Happy Birthday 🎂</h1>
+  <img src="love.jpg">
+  <br>
+  <button onclick="show('cakeblast')">Blow Candle 🕯️</button>
+</div>
+
+<!-- BIG CAKE -->
+<div id="cakeblast" class="screen">
+  <h1>🎉 Make a Wish 💫</h1>
+  <img class="bigcake" src="cake.jpg">
+  <br>
+  <button onclick="show('screen3')">Continue 💖</button>
+</div>
+
+<!-- MESSAGE -->
+<div id="screen3" class="screen">
+  <h1>💖 Happy Birthday 💖</h1>
+  <p>You are special 💫</p>
+  <button onclick="show('screen4')">Open Gifts 🎁</button>
+</div>
+
+<!-- GIFT MENU -->
+<div id="screen4" class="screen">
+  <h2>🎁 Choose Gift</h2>
+
+  <div class="card" onclick="show('gift1')">📸 Photos</div>
+  <div class="card" onclick="show('gift2')">📝 Poem</div>
+  <div class="card" onclick="show('gift3')">💖 Surprise</div>
+</div>
+
+<!-- GIFT 1 -->
+<div id="gift1" class="screen">
+  <h2>📸 Memories</h2>
+  <img src="pic1.jpg">
+  <img src="pic2.jpg">
+  <img src="pic3.jpg">
+  <br>
+  <button onclick="show('screen4')">⬅ Back</button>
+</div>
+
+<!-- GIFT 2 -->
+<div id="gift2" class="screen">
+  <h2>📝 For You 💖</h2>
+  <p>(Send your poem)</p>
+  <br>
+  <button onclick="show('screen4')">⬅ Back</button>
+</div>
+
+<!-- GIFT 3 -->
+<div id="gift3" class="screen">
+  <h2>💖 Surprise</h2>
+  <img src="cute.jpg">
+  <img src="love.jpg">
+  <br>
+  <button onclick="show('screen4')">⬅ Back</button>
+</div>
+
+<script>
+function show(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function checkPass() {
+  let p = document.getElementById('pass').value;
+
+  if (p === "Klishaisthebest") {
+    document.getElementById("music").play();
+    document.getElementById("wrongVid").style.display = "none";
+    show('screen2');
+  } else {
+    document.getElementById("error").innerText = "How dare you 😤";
+    document.getElementById("wrongVid").style.display = "block";
+  }
+}
+</script>
+
+</body>
+</html>
